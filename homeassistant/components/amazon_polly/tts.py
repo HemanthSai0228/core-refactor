@@ -70,7 +70,6 @@ PLATFORM_SCHEMA: Final = BASE_PLATFORM_SCHEMA.extend(
 
 
 def get_engine(
-    hass: HomeAssistant,
     config: ConfigType,
     discovery_info: DiscoveryInfoType | None = None,
 ) -> Provider | None:

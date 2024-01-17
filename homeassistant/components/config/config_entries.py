@@ -336,14 +336,13 @@ async def config_entry_update(
 
     initial_state = entry.state
     if (
-        old_disable_polling != entry.pref_disable_polling
-        and initial_state is config_entries.ConfigEntryState.LOADED
-    ):
-        if not await hass.config_entries.async_reload(entry.entry_id):
-            result["require_restart"] = (
-                entry.state is config_entries.ConfigEntryState.FAILED_UNLOAD
+    old_disable_polling != entry.pref_disable_polling
+    and initial_state is config_entries.ConfigEntryState.LOADED
+    and not await hass.config_entries.async_reload(entry.entry_id)
+        ):
+        result["require_restart"] = (
+            entry.state is config_entries.ConfigEntryState.FAILED_UNLOAD
             )
-
     connection.send_result(msg["id"], result)
 
 

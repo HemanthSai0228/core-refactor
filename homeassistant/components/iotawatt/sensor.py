@@ -42,6 +42,7 @@ class IotaWattSensorEntityDescription(SensorEntityDescription):
 
     value: Callable | None = None
 
+FLASH_ICON = "mdi:flash"
 
 ENTITY_DESCRIPTION_KEY_MAP: dict[str, IotaWattSensorEntityDescription] = {
     "Amps": IotaWattSensorEntityDescription(
@@ -56,7 +57,8 @@ ENTITY_DESCRIPTION_KEY_MAP: dict[str, IotaWattSensorEntityDescription] = {
         native_unit_of_measurement=UnitOfFrequency.HERTZ,
         state_class=SensorStateClass.MEASUREMENT,
         device_class=SensorDeviceClass.FREQUENCY,
-        icon="mdi:flash",
+        icon=FLASH_ICON
+,
         entity_registry_enabled_default=False,
     ),
     "PF": IotaWattSensorEntityDescription(
@@ -90,14 +92,14 @@ ENTITY_DESCRIPTION_KEY_MAP: dict[str, IotaWattSensorEntityDescription] = {
         key="VAR",
         native_unit_of_measurement=VOLT_AMPERE_REACTIVE,
         state_class=SensorStateClass.MEASUREMENT,
-        icon="mdi:flash",
+        icon=FLASH_ICON,
         entity_registry_enabled_default=False,
     ),
     "VARh": IotaWattSensorEntityDescription(
         key="VARh",
         native_unit_of_measurement=VOLT_AMPERE_REACTIVE_HOURS,
         state_class=SensorStateClass.MEASUREMENT,
-        icon="mdi:flash",
+        icon=FLASH_ICON,
         entity_registry_enabled_default=False,
     ),
     "Volts": IotaWattSensorEntityDescription(

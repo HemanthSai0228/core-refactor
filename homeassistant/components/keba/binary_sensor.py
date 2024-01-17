@@ -13,6 +13,7 @@ from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType
 
 from . import DOMAIN, KebaHandler
 
+TMO_FS_KEY = "Tmo FS"
 
 async def async_setup_platform(
     hass: HomeAssistant,
@@ -50,7 +51,7 @@ async def async_setup_platform(
         ),
         KebaBinarySensor(
             keba,
-            "Tmo FS",
+            TMO_FS_KEY,
             "Failsafe Mode",
             "failsafe_mode_state",
             BinarySensorDeviceClass.SAFETY,
@@ -106,9 +107,9 @@ class KebaBinarySensor(BinarySensorEntity):
                 self._keba.get_value("Max curr")
             )
 
-        elif self._key == "Tmo FS":
+        elif self._key == TMO_FS_KEY:
             self._attr_is_on = not self._keba.get_value("FS_on")
-            self._attributes["failsafe_timeout"] = str(self._keba.get_value("Tmo FS"))
+            self._attributes["failsafe_timeout"] = str(self._keba.get_value(TMO_FS_KEY))
             self._attributes["fallback_current"] = str(self._keba.get_value("Curr FS"))
         elif self._key == "Authreq":
             self._attr_is_on = self._keba.get_value(self._key) == 0

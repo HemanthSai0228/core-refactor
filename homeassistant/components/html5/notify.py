@@ -200,6 +200,8 @@ def _load_config(filename: str) -> JsonObjectType:
     return {}
 
 
+INVALID_JSON_MESSAGE = "Invalid JSON"
+
 class HTML5PushRegistrationView(HomeAssistantView):
     """Accepts push registrations from a browser."""
 
@@ -216,7 +218,7 @@ class HTML5PushRegistrationView(HomeAssistantView):
         try:
             data = await request.json()
         except ValueError:
-            return self.json_message("Invalid JSON", HTTPStatus.BAD_REQUEST)
+            return self.json_message(INVALID_JSON_MESSAGE, HTTPStatus.BAD_REQUEST)
         try:
             data = REGISTER_SCHEMA(data)
         except vol.Invalid as ex:
@@ -261,7 +263,7 @@ class HTML5PushRegistrationView(HomeAssistantView):
         try:
             data = await request.json()
         except ValueError:
-            return self.json_message("Invalid JSON", HTTPStatus.BAD_REQUEST)
+            return self.json_message(INVALID_JSON_MESSAGE, HTTPStatus.BAD_REQUEST)
 
         subscription = data.get(ATTR_SUBSCRIPTION)
 
@@ -365,7 +367,7 @@ class HTML5PushCallbackView(HomeAssistantView):
         try:
             data = await request.json()
         except ValueError:
-            return self.json_message("Invalid JSON", HTTPStatus.BAD_REQUEST)
+            return self.json_message(INVALID_JSON_MESSAGE, HTTPStatus.BAD_REQUEST)
 
         event_payload = {
             ATTR_TAG: data.get(ATTR_TAG),

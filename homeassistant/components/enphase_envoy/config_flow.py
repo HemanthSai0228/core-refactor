@@ -139,11 +139,9 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         else:
             host = (user_input or {}).get(CONF_HOST) or self.ip_address or ""
 
-        if user_input is not None:
-            if not self._reauth_entry:
-                if host in self._async_current_hosts():
-                    return self.async_abort(reason="already_configured")
-
+        if user_input is not None and not self._reauth_entry:
+            if host in self._async_current_hosts():
+                return self.async_abort(reason="already_configured")
             try:
                 envoy = await validate_input(
                     self.hass,

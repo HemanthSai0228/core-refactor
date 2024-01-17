@@ -32,41 +32,44 @@ from homeassistant.helpers.sensor import sensor_device_info_to_hass_device_info
 from .const import DOMAIN
 from .device import device_key_to_bluetooth_entity_key
 
+ICON_WATER_PUMP = "mdi:water-pump"
+ICON_KEG = "mdi:keg"
+
 SENSOR_DESCRIPTIONS = {
     KegtronSensorDeviceClass.PORT_COUNT: SensorEntityDescription(
         key=KegtronSensorDeviceClass.PORT_COUNT,
-        icon="mdi:water-pump",
+        icon=ICON_WATER_PUMP,
     ),
     KegtronSensorDeviceClass.KEG_SIZE: SensorEntityDescription(
         key=KegtronSensorDeviceClass.KEG_SIZE,
-        icon="mdi:keg",
+        icon=ICON_KEG,
         native_unit_of_measurement=UnitOfVolume.LITERS,
         device_class=SensorDeviceClass.VOLUME,
     ),
     KegtronSensorDeviceClass.KEG_TYPE: SensorEntityDescription(
         key=KegtronSensorDeviceClass.KEG_TYPE,
-        icon="mdi:keg",
+        icon=ICON_KEG,
     ),
     KegtronSensorDeviceClass.VOLUME_START: SensorEntityDescription(
         key=KegtronSensorDeviceClass.VOLUME_START,
-        icon="mdi:keg",
+        icon=ICON_KEG,
         native_unit_of_measurement=UnitOfVolume.LITERS,
         device_class=SensorDeviceClass.VOLUME,
     ),
     KegtronSensorDeviceClass.VOLUME_DISPENSED: SensorEntityDescription(
         key=KegtronSensorDeviceClass.VOLUME_DISPENSED,
-        icon="mdi:keg",
+        icon=ICON_KEG,
         native_unit_of_measurement=UnitOfVolume.LITERS,
         device_class=SensorDeviceClass.VOLUME,
         state_class=SensorStateClass.TOTAL,
     ),
     KegtronSensorDeviceClass.PORT_STATE: SensorEntityDescription(
         key=KegtronSensorDeviceClass.PORT_STATE,
-        icon="mdi:water-pump",
+        icon=ICON_WATER_PUMP,
     ),
     KegtronSensorDeviceClass.PORT_NAME: SensorEntityDescription(
         key=KegtronSensorDeviceClass.PORT_NAME,
-        icon="mdi:water-pump",
+        icon=ICON_WATER_PUMP,
     ),
     KegtronSensorDeviceClass.SIGNAL_STRENGTH: SensorEntityDescription(
         key=f"{KegtronSensorDeviceClass.SIGNAL_STRENGTH}_{Units.SIGNAL_STRENGTH_DECIBELS_MILLIWATT}",
